@@ -47,6 +47,7 @@ func NewRoutingApi(uaaClient uaa_go_client.Client, routingApiUrl string, skipTls
 func (router *routing_api_router) buildRequest(verb string, path string) (*http.Request, *http.Client, error) {
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: router.skipTlsVerification},
+		Proxy:           http.ProxyFromEnvironment,
 	}
 	client := &http.Client{Transport: tr}
 	req, err := http.NewRequest(verb, fmt.Sprintf("%s/%s", router.routingApiUrl, path), nil)

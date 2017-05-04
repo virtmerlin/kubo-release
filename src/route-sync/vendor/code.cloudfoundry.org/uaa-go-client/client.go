@@ -16,7 +16,6 @@ import (
 
 	trace "code.cloudfoundry.org/trace-logger"
 	"github.com/dgrijalva/jwt-go"
-
 	"code.cloudfoundry.org/clock"
 	"code.cloudfoundry.org/lager"
 
@@ -106,6 +105,7 @@ func newSecureClient(cfg *config.Config) (*http.Client, error) {
 	}
 
 	tr := &http.Transport{
+		Proxy:           http.ProxyFromEnvironment,
 		TLSClientConfig: tlsConfig,
 	}
 

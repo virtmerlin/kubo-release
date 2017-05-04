@@ -28,7 +28,8 @@ start_kubernetes_controller_manager() {
   exec chpst -u vcap:vcap  \
     kube-controller-manager \
       --allocate-node-cidrs=true \
-      --cluster-cidr=10.200.0.0/16 \
+      --cluster-cidr=10.200.0.0/26 \
+      --node-cidr-mask-size 26 \
       --cluster-name=kubernetes \
       --leader-elect=true \
       --master=http://localhost:8080 \

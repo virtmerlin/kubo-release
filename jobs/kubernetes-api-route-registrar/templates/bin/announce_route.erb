@@ -15,6 +15,16 @@ BACKEND_PORT="<%=p('backend_port') %>"
 BACKEND_IP="<%= spec.ip %>"
 KUBO_PORT="<%=p('external_kubo_port') %>"
 
+
+
+export HTTP_PROXY=10.0.252.2:8888
+export http_proxy=10.0.252.2:8888
+export HTTPS_PROXY=10.0.252.2:8888
+export https_proxy=10.0.252.2:8888
+
+
+
+
 # Fetch UAA token
 UAA_REQUEST=$(curl --fail -s -k -X POST ${UAA_API_URL}/oauth/token --data "client_id=${UAA_CLIENT_ID}&client_secret=${UAA_CLIENT_SECRET}&grant_type=client_credentials&response_type=token")
 UAA_TOKEN=$(echo ${UAA_REQUEST} | jq -r .access_token)
